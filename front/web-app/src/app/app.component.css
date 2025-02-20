@@ -1,0 +1,56 @@
+.app-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Navbar */
+  .vertical-navbar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+  }
+  
+  .vertical-navbar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .vertical-navbar ul li {
+    margin-bottom: 15px;
+  }
+  
+  .vertical-navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .vertical-navbar ul li a:hover {
+    color: #4CAF50;
+  }
+  
+  .vertical-navbar ul li a.active {
+    color: #4CAF50;
+    font-weight: bold;
+  }
+  
+  .vertical-navbar ul li button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .vertical-navbar ul li button:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* Principal */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }

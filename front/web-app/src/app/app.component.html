@@ -1,2 +1,22 @@
 <!-- app.component.html -->
-<router-outlet></router-outlet>
+<div *ngIf="isAuthenticated(); else loginTemplate" class="app-container">
+    <!-- Navbar -->
+    <nav class="vertical-navbar">
+      <ul>
+        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+        <li><button (click)="logout()">Logout</button></li>
+      </ul>
+    </nav>
+  
+    <!-- Principal -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+  <!-- Solo login -->
+  <ng-template #loginTemplate>
+    <router-outlet></router-outlet>
+  </ng-template>
