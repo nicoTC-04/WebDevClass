@@ -1,0 +1,6 @@
+<div *ngIf="pokemonList()?.length" class="poke-card-container">
+    <div *ngFor="let p of pokemonList()" class="poke-card">
+        <h2>{{ p.name | titlecase }}</h2>
+        <img [src]="p.sprite" alt="{{ p.name }}">
+    </div>
+</div>
