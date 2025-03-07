@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from './core/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,13 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'web-app';
+  navbarOpen = false;
 
   constructor(private authService: AuthService) {}
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
 
   isAuthenticated(): boolean {
     return this.authService.isLoggedIn();

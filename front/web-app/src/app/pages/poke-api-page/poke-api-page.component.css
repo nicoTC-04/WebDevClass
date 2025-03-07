@@ -1,0 +1,44 @@
+/* Container for Pokémon cards */
+.poke-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+}
+
+/* Individual Pokémon Card */
+.poke-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+    width: 12rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.poke-card:hover {
+    transform: scale(1.05);
+}
+
+/* Pokémon Name */
+.poke-card h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: .5rem;
+}
+
+/* Pokémon Image */
+.poke-card img {
+    width: 7rem;
+    height: 7rem;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for image */
+.poke-card:hover img {
+    transform: rotate(5deg);
+}

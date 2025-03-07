@@ -1,56 +1,141 @@
 .app-container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  /* Navbar */
-  .vertical-navbar {
-    width: 200px;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-  }
-  
-  .vertical-navbar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .vertical-navbar ul li {
-    margin-bottom: 15px;
-  }
-  
-  .vertical-navbar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .vertical-navbar ul li a:hover {
-    color: #4CAF50;
-  }
-  
-  .vertical-navbar ul li a.active {
-    color: #4CAF50;
-    font-weight: bold;
-  }
-  
-  .vertical-navbar ul li button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .vertical-navbar ul li button:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* Principal */
-  .main-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+/* Burger menu button */
+.burger-menu {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: #333;
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: .8rem .8rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: left 0.3s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.burger-menu span {
+  display: block;
+  height: 4px;
+  background-color: #9c9c9c;
+  transition: 0.3s;
+}
+
+.burger-menu span:nth-child(1) {
+  width: 1.8rem;
+}
+
+.app-container.navbar-open .burger-menu span:nth-child(1) {
+  width: 1.8rem;
+}
+
+.burger-menu span:nth-child(2) {
+  width: 1rem;
+}
+
+.app-container.navbar-open .burger-menu span:nth-child(2) {
+  width: 1.8rem;
+}
+
+.burger-menu span:nth-child(3) {
+  width: .4rem; 
+}
+
+.app-container.navbar-open .burger-menu span:nth-child(3) {
+  width: 1.8rem;
+}
+
+
+/* Move button when navbar opens */
+.app-container.navbar-open .burger-menu {
+  left: 16rem; /* Adjust position when navbar is open */
+}
+
+.burger-menu:hover span {
+  background-color: #eeeeee;
+}
+
+
+/* Navbar */
+.vertical-navbar {
+  width: 16rem;
+  background-color: #333;
+  color: white;
+  padding: 2rem;
+  position: fixed;
+  left: -11rem;
+  top: 0;
+  height: 100vh; /* Ensures full height */
+  transform: skewX(-45deg);
+  transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
+  z-index: 1000;
+  transform-origin: left top;
+  overflow-y: auto; /* Allows scrolling if navbar content overflows */
+}
+
+/* When navbar opens */
+.vertical-navbar.open {
+  left: 0;
+  transform: skewX(0); /* Remove skew when fully opened */
+}
+
+
+
+.vertical-navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.vertical-navbar ul li {
+  margin-bottom: 1.5rem;
+}
+
+.vertical-navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.vertical-navbar ul li a:hover {
+  color: #4CAF50;
+}
+
+.vertical-navbar ul li a.active {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.vertical-navbar ul li button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.vertical-navbar ul li button:hover {
+  background-color: #d32f2f;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  margin-left: 5rem;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.shifted {
+  margin-left: 20rem;
+}

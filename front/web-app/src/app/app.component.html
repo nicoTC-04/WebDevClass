@@ -1,22 +1,31 @@
 <!-- app.component.html -->
-<div *ngIf="isAuthenticated(); else loginTemplate" class="app-container">
-    <!-- Navbar -->
-    <nav class="vertical-navbar">
-      <ul>
-        <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-        <li><button (click)="logout()">Logout</button></li>
-      </ul>
-    </nav>
-  
-    <!-- Principal -->
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  
-  <!-- Solo login -->
-  <ng-template #loginTemplate>
+<div *ngIf="isAuthenticated(); else loginTemplate" class="app-container" [ngClass]="{'navbar-open': navbarOpen}">
+  <!-- Burger Menu Button -->
+  <!-- <button class="burger-menu" (click)="toggleNavbar()">☰</button> -->
+  <button class="burger-menu" (click)="toggleNavbar()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Navbar -->
+  <nav class="vertical-navbar" [ngClass]="{'open': navbarOpen}">
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      <li><a routerLink="/poke-api-page" routerLinkActive="active">Poke API</a></li>
+      <li><button (click)="logout()">Logout</button></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content" [ngClass]="{'shifted': navbarOpen}">
     <router-outlet></router-outlet>
-  </ng-template>
+  </div>
+</div>
+
+<!-- Solo login -->
+<ng-template #loginTemplate>
+  <router-outlet></router-outlet>
+</ng-template>
