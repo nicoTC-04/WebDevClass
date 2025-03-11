@@ -1,3 +1,14 @@
+.search-bar {
+    width: 80%;
+    padding: .8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-left: 9%;
+  }
+  
+
 /* Container for Pokémon cards */
 .poke-card-container {
     display: flex;
@@ -41,4 +52,47 @@
 /* Hover effect for image */
 .poke-card:hover img {
     transform: rotate(5deg);
+}
+
+
+
+/* Pagination Container */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Pagination Buttons */
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.pagination button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Disabled button */
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Page Number Text */
+.pagination span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
 }
