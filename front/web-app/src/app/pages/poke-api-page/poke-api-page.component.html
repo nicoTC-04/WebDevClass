@@ -1,6 +1,39 @@
+<!-- <input 
+  type="text" 
+  placeholder="Search Pokémon..." 
+  (input)="updateSearchQuery($event)"
+  class="search-bar"
+/>
+
+
 <div *ngIf="pokemonList()?.length" class="poke-card-container">
-    <div *ngFor="let p of pokemonList()" class="poke-card">
+    <div *ngFor="let p of pokemonListFiltered()" class="poke-card">
         <h2>{{ p.name | titlecase }}</h2>
         <img [src]="p.sprite" alt="{{ p.name }}">
     </div>
+</div> -->
+
+
+<input 
+  type="text" 
+  placeholder="Search Pokémon..." 
+  (input)="updateSearchQuery($event)"
+  class="search-bar"
+/>
+
+<div *ngIf="paginatedPokemonList()?.length" class="poke-card-container">
+    <div *ngFor="let p of paginatedPokemonList()" class="poke-card">
+        <h2>{{ p.name | titlecase }}</h2>
+        <img [src]="p.sprite" alt="{{ p.name }}">
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+    <button (click)="prevPage()" [disabled]="currentPage() === 1">Previous</button>
+    <span>Page {{ currentPage() }}</span>
+    <button (click)="nextPage()" 
+            [disabled]="currentPage() * pageSize >= pokemonListFiltered().length">
+        Next
+    </button>
 </div>
