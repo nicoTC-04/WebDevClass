@@ -1,4 +1,4 @@
-// login.component.ts
+// Register.component.ts
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -7,15 +7,15 @@ import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 
 
-export class LoginComponent {
+export class RegisterComponent {
   errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}  
@@ -23,16 +23,6 @@ export class LoginComponent {
   onSubmit(loginForm: NgForm) {
     const username = loginForm.value.username;
     const password = loginForm.value.password;
-
-    if (this.authService.validateCredentials(username, password)) {
-      // Si Login
-      this.errorMessage = null;
-      console.log('Login successful!');
-      this.authService.login();
-    } else {
-      // Fallo login
-      this.errorMessage = 'Invalid username or password. Please try again.';
-      console.log('Login failed.');
-    }
+    const mail = loginForm.value.mail;
   }
 }

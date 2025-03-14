@@ -1,5 +1,5 @@
 /* login.component.css */
-.login-form-container {
+.register-form-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 30px;
@@ -22,6 +22,27 @@
   div {
     margin-bottom: 15px;
   }
+
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: #333; /* Dark gray for visibility */
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+    .back-button:hover {
+        color: #007bff; /* Blue highlight on hover */
+    }
+
+    .back-button::before {
+        content: "←"; /* Left arrow */
+        margin-right: 8px;
+        font-size: 18px;
+    }
+
   
   label {
     display: block;
@@ -51,7 +72,7 @@
     width: 100%;
     margin-top: 30px;
     padding: 12px;
-    background-color: #0056b3;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
@@ -61,55 +82,9 @@
   }
   
   .submit-button:hover {
-    background-color: #122841;
-  }
-
-  .forgot-link {
-    display: block;
-    text-align: right; /* Aligns the link to the right */
-    margin-top: -10px; /* Adjusts position slightly above the next element */
-    margin-bottom: 15px; /* Ensures spacing from the next element */
-    font-size: 14px;
-    color: #007bff; /* A standard blue color for links */
-    text-decoration: none; /* Removes underline */
-    transition: color 0.3s ease;
-}
-
-  .forgot-link:hover {
-      color: #0056b3; /* Darker shade of blue on hover */
-      text-decoration: underline; /* Adds underline on hover for better visibility */
-  }
-
-  .forgot-link:active {
-      color: #003f7f; /* Even darker shade when clicked */
-  }
-
-
-  .register-button {
-    display: block; /* Ensures it behaves like a block element */
-    text-align: center; /* Centers the text */
-    width: 94%; /* Matches the button width */
-    margin-top: 30px;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none; /* Removes underline */
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.register-button:hover {
     background-color: #39813b;
-}
+  }
 
-.register-button:active {
-    background-color: #2e6b2e;
-}
-
-  
   .submit-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
