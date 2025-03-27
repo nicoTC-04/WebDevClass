@@ -21,18 +21,25 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}  
 
   onSubmit(loginForm: NgForm) {
-    const username = loginForm.value.username;
+    const email = loginForm.value.email;
     const password = loginForm.value.password;
 
-    if (this.authService.validateCredentials(username, password)) {
-      // Si Login
-      this.errorMessage = null;
-      console.log('Login successful!');
-      this.authService.login();
-    } else {
-      // Fallo login
-      this.errorMessage = 'Invalid username or password. Please try again.';
-      console.log('Login failed.');
-    }
+    this.authService.validateCredentials(email, password).subscribe(
+      (response) => {
+        if (response.success) {
+          // Successful login
+          this.errorMessage = null;
+          console.log('Login successful!');
+          this.authService.login(response.id);
+        } else {
+          this.errorMessage = 'Invalid email or password. Please try again.';
+          console.log('Login failed.');
+        }
+      },
+      (error) => {
+        console.error('Login error:', error);
+        this.errorMessage = 'An error occurred. Please try again later.';
+      }
+    );
   }
 }
