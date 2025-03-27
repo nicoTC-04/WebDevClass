@@ -20,9 +20,21 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService, private router: Router) {}  
 
-  onSubmit(loginForm: NgForm) {
-    const username = loginForm.value.username;
-    const password = loginForm.value.password;
-    const mail = loginForm.value.mail;
+  onSubmit(registerForm: NgForm) {
+    const name = registerForm.value.username;
+    const email = registerForm.value.mail;
+    const password = registerForm.value.password;
+    const birthday = registerForm.value.birthday;
+
+    this.authService.registerUser(name, email, password, birthday).subscribe(
+      (response) => {
+        console.log('Registration successful!', response);
+        this.authService.login(response.id);
+      },
+      (error) => {
+        this.errorMessage = 'Registration failed. Please try again.';
+        console.error('Registration error:', error);
+      }
+    );
   }
 }

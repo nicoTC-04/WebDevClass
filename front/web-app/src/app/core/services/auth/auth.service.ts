@@ -1,6 +1,8 @@
 // auth.service.ts
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -8,70 +10,35 @@ import { isPlatformBrowser } from '@angular/common';
 })
 
 export class AuthService {
-  private dummyAccount = {
-    user: "nico",
-    password: "1234"
-  };
 
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object){}
+  private loginUrl = 'http://localhost:3000/users/login';
+  private registerUrl = 'http://localhost:3000/users/register';
 
-  validateCredentials(user: string, password: string): boolean {
-    if(user == this.dummyAccount.user){
-      return password == this.dummyAccount.password;
-    }
+  constructor(private router: Router, private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object){}
 
-    return false;
+  validateCredentials(email: string, password: string): Observable<any> {
+    return this.http.post<any>(this.loginUrl, { email, password });
   }
 
-  login(){
-    localStorage.setItem('fakeToken', 'dummy-token-123');
+  registerUser(name: string, email: string, password: string, birthday: Date): Observable<any> {
+    return this.http.post<any>(this.registerUrl, { name, email, password, birthday });
+  }
+
+  login(id: string){
+    localStorage.setItem('userID', id);
     this.router.navigate(['/home'])
   }
 
   isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem('fakeToken');
+      return !!localStorage.getItem('userID');
     }
 
     return false;
   }
 
   logout() {
-    localStorage.removeItem('fakeToken');
+    localStorage.removeItem('userID');
     this.router.navigate(['/login']);
   }
 }
-
-
-
-// import { Injectable } from '@angular/core';
-// import { Router } from '@angular/router';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthService {
-//   private readonly AUTH_KEY = 'isLoggedIn'; // Key for localStorage
-
-//   constructor(private router: Router) {}
-
-//   // Method to log in the user
-//   login(username: string, password: string): boolean {
-//     if (username === 'nico' && password === '1234') {
-//       localStorage.setItem(this.AUTH_KEY, 'true'); // Save login state in localStorage
-//       return true; // Login successful
-//     }
-//     return false; // Login failed
-//   }
-
-//   // Method to log out the user
-//   logout(): void {
-//     localStorage.removeItem(this.AUTH_KEY); // Remove login state from localStorage
-//     this.router.navigate(['/login']); // Redirect to login page
-//   }
-
-//   // Method to check if the user is logged in
-//   isAuthenticated(): boolean {
-//     return localStorage.getItem(this.AUTH_KEY) === 'true'; // Check login state from localStorage
-//   }
-// }
